@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+# 推到 main 分支时自动 build + 部署
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Pages 部署需要的两类权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时刻只允许一次部署在跑，避免互相覆盖
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        # API Key 从 Secrets 注入到构建环境，最终会进 dist 里的 JS bundle
+        # （前端项目这是不可避免的；高敏感 Key 不应走这个方案）
+        env:
+          VITE_LLM_API_KEY: ${{ secrets.VITE_LLM_API_KEY }}
+          VITE_LLM_BASE_URL: ${{ secrets.VITE_LLM_BASE_URL }}
+          VITE_LLM_MODEL: ${{ secrets.VITE_LLM_MODEL }}
+          VITE_AMAP_KEY: ${{ secrets.VITE_AMAP_KEY }}
+          VITE_AMAP_SECURITY_CODE: ${{ secrets.VITE_AMAP_SECURITY_CODE }}
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

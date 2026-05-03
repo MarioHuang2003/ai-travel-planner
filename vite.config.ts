@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-export default defineConfig({
+// GitHub Pages 部署到子路径 /ai-travel-planner/，
+// 静态资源必须带这个前缀才能加载到。
+// 本地 dev 时 base 应当是 '/'，所以只在 build 模式下注入。
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/ai-travel-planner/' : '/',
   plugins: [vue()],
   server: {
     port: 5173,
@@ -20,4 +24,4 @@ export default defineConfig({
       '@amap/amap-jsapi-loader',
     ],
   },
-})
+}))

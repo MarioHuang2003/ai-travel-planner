@@ -1147,6 +1147,30 @@ async function exportAsImage() {
             <span class="stat-pill__value">¥{{ tripStats.budget }}</span>
           </span>
         </span>
+        <!-- GitHub 仓库入口：图标按钮 + tooltip，新标签页打开 -->
+        <a
+          class="github-link"
+          href="https://github.com/MarioHuang2003/ai-travel-planner"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="在 GitHub 上查看项目源码"
+          title="在 GitHub 上查看项目源码"
+        >
+          <svg
+            class="github-link__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-.99-.01-1.94-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.79.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"
+            />
+          </svg>
+          <span class="github-link__label">GitHub</span>
+        </a>
         <el-popover
           v-model:visible="historyVisible"
           placement="bottom-end"
@@ -3256,7 +3280,7 @@ async function exportAsImage() {
   gap: 10px;
   align-items: flex-start;
   background: var(--kind-food-soft);
-  padding: 10px 14px;
+  padding: 10px 13px;
   border-radius: var(--radius-card-sm);
   font-size: 12.5px;
   line-height: 1.55;
@@ -3382,6 +3406,40 @@ async function exportAsImage() {
   gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+/* 顶部 GitHub 仓库入口：白底胶囊，与 stat-pill 同语系；hover 翻深色 */
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+  background: #1f1c19;
+  color: #ffffff;
+  border-color: #1f1c19;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.github-link__icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 /* 顶部「历史」入口按钮：白底圆角胶囊（与 stat-pill 同语系） */
@@ -3584,7 +3642,7 @@ async function exportAsImage() {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 10px 13px;
   background: var(--surface-soft);
   color: var(--text-primary);
   border: 1px solid var(--line-soft);
@@ -3894,6 +3952,13 @@ async function exportAsImage() {
   }
   .stat-pill__item {
     padding: 0 8px;
+  }
+  /* 窄屏只保留 GitHub 图标，省横向空间给 stat-pill */
+  .github-link {
+    padding: 8px;
+  }
+  .github-link__label {
+    display: none;
   }
   .panel {
     padding: 18px;
