@@ -2,6 +2,9 @@
 
 一句话描述你想去哪，AI 帮你生成可视化时间线行程：景点、美食、住宿、交通、避坑指南一应俱全，全程可微调、可保存为长图分享。
 
+🌐 **在线体验**：<https://mariohuang2003.github.io/ai-travel-planner/>
+📦 **GitHub 仓库**：<https://github.com/MarioHuang2003/ai-travel-planner>
+
 > **技术栈**：Vue 3 + TypeScript + Vite + Pinia + Element Plus + 高德 JS API
 > **LLM**：兼容 OpenAI 协议的任意端点（智谱 GLM、DeepSeek、Kimi、OpenAI…）
 
