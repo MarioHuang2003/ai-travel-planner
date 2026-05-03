@@ -2931,7 +2931,9 @@ async function exportAsImage() {
   z-index: 1500;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 12px 12px 12px 22px;
   background: var(--accent);
   color: var(--text-on-dark);
@@ -2943,14 +2945,18 @@ async function exportAsImage() {
 .selection-bar__info {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   font-size: 13px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .selection-bar__count {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .selection-bar__dot {
@@ -2959,6 +2965,7 @@ async function exportAsImage() {
   border-radius: 50%;
   background: var(--accent-yellow);
   box-shadow: 0 0 0 3px rgba(244, 204, 77, 0.25);
+  flex-shrink: 0;
 }
 
 .selection-bar__count b {
@@ -2967,14 +2974,26 @@ async function exportAsImage() {
   margin: 0 2px;
 }
 
+/* hint 在空间不够时优先被省略，让 count + 操作按钮永远完整可见 */
 .selection-bar__hint {
   opacity: 0.7;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* 中等及以下屏幕直接隐藏 hint —— 用户真要看说明可以点退出回前一屏 */
+@media (max-width: 900px) {
+  .selection-bar__hint {
+    display: none;
+  }
 }
 
 .selection-bar__actions {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .selection-bar__actions .el-button {

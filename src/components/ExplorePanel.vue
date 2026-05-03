@@ -634,7 +634,9 @@ function handleClose() {
   transition: all 0.15s ease;
 }
 
-.explore-tab:hover:not(:disabled) {
+/* 未选中态的 hover：边框加深、字色变深；用 :not(.explore-tab--active) 排除选中态，
+   避免和 .explore-tab--active 的深底白字相互覆盖造成"黑字在黑底上看不清" */
+.explore-tab:hover:not(:disabled):not(.explore-tab--active) {
   border-color: var(--line);
   color: var(--text-primary);
 }
@@ -644,6 +646,13 @@ function handleClose() {
   border-color: var(--accent);
   color: var(--text-on-dark);
   font-weight: 600;
+}
+
+/* 选中态 hover：保持白字，背景换成 accent-hover 作为悬停反馈 */
+.explore-tab--active:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-on-dark);
 }
 
 .explore-tab:disabled {
