@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="color-scheme" content="light" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <title>说走就走 · AI 旅行 Timeline 规划器</title>
+    <meta
+      name="description"
+      content="一句话描述你想去哪，AI 帮你生成可视化时间线行程：含景点、美食、交通、避坑指南，可微调、可保存为长图。"
+    />
+    <meta name="keywords" content="AI 旅行,行程规划,时间线,旅行助手,说走就走" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="说走就走 · AI 旅行 Timeline 规划器" />
+    <meta
+      property="og:description"
+      content="一句话描述你想去哪，AI 帮你生成可视化时间线行程：含景点、美食、交通、避坑指南，可微调、可保存为长图。"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 首屏白底，避免暗色系统下闪一帧黑底 -->
+    <style>
+      html,
+      body {
+        background: #f5f7fb;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

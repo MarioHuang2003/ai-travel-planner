@@ -1,0 +1,246 @@
+/* ============================================================
+ * 全局设计 token & Element Plus 主题覆盖
+ *
+ * 设计语言（参考 Be.run 风格）：
+ * - 画布：暖米色 (#f4efe6)，不再是冷蓝灰；让旅行规划带"度假感"
+ * - 卡片：纯白 / 米白，大圆角 (24px)，柔和阴影
+ * - CTA：深咖啡黑（#1f1c19），与米色形成温暖对比；不用渐变
+ * - 强调色：黄 / 珊瑚，仅用于关键节点和图表，避免铺面
+ * - Activity 配色更柔：从饱和度高的 EL 默认色改为低饱和度的旅游色
+ *
+ * 命名规则：
+ * - --bg-*       背景层
+ * - --surface-* 卡片表面
+ * - --text-*    文字层级
+ * - --line-*    边框 / 分割线
+ * - --accent-*  品牌强调色
+ * - --kind-*    Activity 类型色（attraction / food / transit / hotel）
+ * - --radius-* 圆角
+ * - --shadow-* 阴影
+ * ============================================================ */
+
+:root {
+  /* —— 排版 —— */
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  line-height: 1.6;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  /* —— 背景 / 画布 —— */
+  --bg-canvas: #f4efe6;
+  --bg-canvas-soft: #ebe5d9;
+  --surface: #ffffff;
+  --surface-soft: #faf6ee;
+  --surface-sunken: #f7f2e8;
+
+  /* —— 文字 —— */
+  --text-primary: #1f1c19;
+  --text-regular: #423d36;
+  --text-secondary: #7d756c;
+  --text-muted: #a8a097;
+  --text-on-dark: #f5efe2;
+
+  /* —— 边框 / 线 —— */
+  --line-soft: rgba(31, 28, 25, 0.06);
+  --line: rgba(31, 28, 25, 0.1);
+  --line-strong: rgba(31, 28, 25, 0.18);
+
+  /* —— 品牌 / 强调色 —— */
+  --accent: #1f1c19;             /* 深咖：主 CTA / 选中 */
+  --accent-hover: #2d2926;
+  --accent-soft: #2a2622;
+  --accent-yellow: #f4cc4d;       /* 高亮黄：进度 / 选中态 */
+  --accent-yellow-soft: #fbe89c;
+  --accent-coral: #ec6f5a;        /* 强调红：重点提示 */
+  --accent-coral-soft: #f9c4ba;
+
+  /* —— Activity 类型色（柔和度低饱和） —— */
+  --kind-attraction: #5d8a6b;     /* 苔绿：景点 */
+  --kind-attraction-soft: #e2ebdf;
+  --kind-food: #c9874a;           /* 焦糖：美食 */
+  --kind-food-soft: #f5e4d0;
+  --kind-transit: #557087;        /* 灰蓝：交通 */
+  --kind-transit-soft: #dfe6ed;
+  --kind-hotel: #8a7aa6;          /* 雾紫：住宿 */
+  --kind-hotel-soft: #e8e3f0;
+
+  /* —— 圆角 —— */
+  --radius-card: 24px;
+  --radius-card-sm: 16px;
+  --radius-input: 14px;
+  --radius-pill: 999px;
+
+  /* —— 阴影 —— */
+  --shadow-card: 0 1px 2px rgba(31, 28, 25, 0.04),
+    0 8px 24px rgba(31, 28, 25, 0.04);
+  --shadow-card-hover: 0 2px 4px rgba(31, 28, 25, 0.06),
+    0 16px 36px rgba(31, 28, 25, 0.08);
+  --shadow-popover: 0 12px 32px rgba(31, 28, 25, 0.12);
+  --shadow-inset: inset 0 0 0 1px var(--line-soft);
+}
+
+/* —— Element Plus 变量覆盖（保持一致设计语言） —— */
+:root {
+  --el-color-primary: var(--accent);
+  --el-color-primary-light-3: #423b34;
+  --el-color-primary-light-5: #635a4f;
+  --el-color-primary-light-7: #8d8478;
+  --el-color-primary-light-8: #b3aa9d;
+  --el-color-primary-light-9: #ece6d9;
+  --el-color-primary-dark-2: #161310;
+
+  --el-color-success: var(--kind-attraction);
+  --el-color-warning: var(--kind-food);
+  --el-color-info: var(--text-secondary);
+  --el-color-danger: var(--accent-coral);
+
+  --el-text-color-primary: var(--text-primary);
+  --el-text-color-regular: var(--text-regular);
+  --el-text-color-secondary: var(--text-secondary);
+  --el-text-color-placeholder: var(--text-muted);
+
+  --el-border-color: var(--line);
+  --el-border-color-light: var(--line);
+  --el-border-color-lighter: var(--line-soft);
+  --el-border-color-extra-light: var(--line-soft);
+
+  --el-bg-color: var(--surface);
+  --el-bg-color-page: var(--bg-canvas);
+  --el-bg-color-overlay: var(--surface);
+
+  --el-fill-color: var(--surface-soft);
+  --el-fill-color-light: var(--surface-sunken);
+  --el-fill-color-lighter: var(--surface-sunken);
+  --el-fill-color-blank: var(--surface);
+
+  --el-border-radius-base: 12px;
+  --el-border-radius-small: 8px;
+  --el-border-radius-round: 999px;
+
+  --el-box-shadow: var(--shadow-card);
+  --el-box-shadow-light: var(--shadow-card);
+  --el-box-shadow-lighter: 0 0 0 1px var(--line-soft);
+
+  --el-font-size-base: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 6%, rgba(244, 204, 77, 0.18), transparent 38%),
+    radial-gradient(circle at 92% 0%, rgba(236, 111, 90, 0.12), transparent 36%),
+    var(--bg-canvas);
+  color: var(--text-primary);
+  font-feature-settings: 'cv11', 'ss03', 'tnum';
+}
+
+#app {
+  width: 100%;
+}
+
+/* —— Element Plus 微调：让按钮 / 输入框跟设计语言一致 —— */
+.el-button {
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  --el-button-hover-text-color: var(--accent-hover);
+}
+
+.el-button--large {
+  --el-button-size: 44px;
+  height: 44px;
+  padding: 0 22px;
+  font-size: 14px;
+}
+
+.el-button--default {
+  --el-button-bg-color: var(--surface);
+  --el-button-border-color: var(--line);
+  --el-button-hover-bg-color: var(--surface-soft);
+  --el-button-hover-border-color: var(--line-strong);
+  --el-button-text-color: var(--text-primary);
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--accent);
+  --el-button-border-color: var(--accent);
+  --el-button-hover-bg-color: var(--accent-hover);
+  --el-button-hover-border-color: var(--accent-hover);
+}
+
+.el-button--primary.is-plain {
+  --el-button-bg-color: transparent;
+  --el-button-text-color: var(--accent);
+  --el-button-border-color: var(--line-strong);
+  --el-button-hover-bg-color: var(--surface-soft);
+  --el-button-hover-text-color: var(--accent);
+}
+
+.el-input__wrapper,
+.el-textarea__inner {
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line) inset !important;
+  transition: box-shadow 0.18s ease;
+}
+
+.el-input__wrapper:hover,
+.el-textarea__inner:hover {
+  box-shadow: 0 0 0 1px var(--line-strong) inset !important;
+}
+
+.el-input.is-focus .el-input__wrapper,
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 1.5px var(--accent) inset !important;
+}
+
+.el-card {
+  border-radius: var(--radius-card-sm);
+  border-color: var(--line-soft);
+}
+
+.el-dialog {
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.el-dialog__header {
+  padding: 22px 26px 8px;
+  margin-right: 0;
+}
+
+.el-dialog__title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.el-dialog__body {
+  padding: 12px 26px 22px;
+  color: var(--text-regular);
+}
+
+.el-dialog__footer {
+  padding: 14px 26px 22px;
+}
+
+/* —— 选中文字配色：用品牌色 —— */
+::selection {
+  background: var(--accent-yellow-soft);
+  color: var(--text-primary);
+}
